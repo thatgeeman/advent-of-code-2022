@@ -1,5 +1,5 @@
 def read_file(filename):
-    calories = [[]]
+    sums = [[]]
     with open(filename, "r") as f:
         while True:
             n = f.readline()
@@ -7,11 +7,11 @@ def read_file(filename):
                 break
             else:
                 if n == "\n":
-                    calories.append([])
+                    sums.append([])
                 else:
                     print(n)
-                    calories[-1].append(int(n))
-    return calories
+                    sums[-1].append(int(n))
+    return sums
 
 
 def get_largest(x):
@@ -26,7 +26,7 @@ def get_largest(x):
 
 
 if __name__ == "__main__":
-    calories = read_file("./input.txt")
+    calories = read_file("dec1/input.txt")
     print(calories)
     max_calories, idx = get_largest(calories)
     print(f"largest calorie carrier: {max_calories} at index {idx}")
