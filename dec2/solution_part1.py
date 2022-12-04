@@ -51,22 +51,22 @@ def play(player1, player2):
     if player1.choice == player2.choice:
         player1.draw()
         player2.draw()
-    if player1.choice == "R" and player2.choice == "S":
+    elif player1.choice == "R" and player2.choice == "S":
         player1.win()
         player2.lose()
-    if player1.choice == "S" and player2.choice == "R":
+    elif player1.choice == "S" and player2.choice == "R":
         player1.lose()
         player2.win()
-    if player1.choice == "S" and player2.choice == "P":
+    elif player1.choice == "S" and player2.choice == "P":
         player1.win()
         player2.lose()
-    if player1.choice == "P" and player2.choice == "S":
+    elif player1.choice == "P" and player2.choice == "S":
         player1.lose()
         player2.win()
-    if player1.choice == "P" and player2.choice == "R":
+    elif player1.choice == "P" and player2.choice == "R":
         player1.win()
         player2.lose()
-    if player1.choice == "R" and player2.choice == "P":
+    elif player1.choice == "R" and player2.choice == "P":
         player1.lose()
         player2.win()
 
