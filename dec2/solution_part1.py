@@ -44,29 +44,35 @@ class RPSGamer:
         self.score += self._points[self.choice] + 3
 
 
-def play(player1, player2):
+def check_rule_book(A_choice: str, B_choice: str, order):
+    if A_choice == B_choice:
+        return "draw"
+    elif A_choice == "S" and B_choice == "R":
+        order = order[1:]
+    elif A_choice == "R" and B_choice == "S":
+        order = order[1:]
+    elif A_choice == "P" and B_choice == "R":
+        order = order[:-1]
+    elif A_choice == "R" and B_choice == "P":
+        order = order[:-1]
+    A_idx = order.index(A_choice)
+    B_idx = order.index(B_choice)
+    _tmp_order = {A_choice: A_idx, B_choice: B_idx}
+    return max(_tmp_order, key=lambda x: _tmp_order[x])
+
+
+def play(player1, player2, order):
     assert isinstance(player1, RPSGamer)
     assert isinstance(player2, RPSGamer)
-    print(player1.choice, player2.choice)
-    if player1.choice == player2.choice:
+    result = check_rule_book(player1.choice, player2.choice, order)
+    print(f"{player1.choice}, {player2.choice} -> {result}")
+    if result == "draw":
         player1.draw()
         player2.draw()
-    elif player1.choice == "R" and player2.choice == "S":
+    elif player1.choice == result:
         player1.win()
         player2.lose()
-    elif player1.choice == "S" and player2.choice == "R":
-        player1.lose()
-        player2.win()
-    elif player1.choice == "S" and player2.choice == "P":
-        player1.win()
-        player2.lose()
-    elif player1.choice == "P" and player2.choice == "S":
-        player1.lose()
-        player2.win()
-    elif player1.choice == "P" and player2.choice == "R":
-        player1.win()
-        player2.lose()
-    elif player1.choice == "R" and player2.choice == "P":
+    elif player2.choice == result:
         player1.lose()
         player2.win()
 
@@ -75,7 +81,8 @@ def play(player1, player2):
 # 0 if you lost, 3 if the round was a draw, and 6 if you won
 
 if __name__ == "__main__":
-    # R > S > P > R
+    # R < P < S < R
+    order = "RPSR"
     strategy_sheet = read_file("dec2/input.txt")
     print(f"total rounds: {len(strategy_sheet)}")
     p1 = RPSGamer("Elf", "ABC")
@@ -84,6 +91,6 @@ if __name__ == "__main__":
         m1, m2 = round
         p1.set_choice(m1)
         p2.set_choice(m2)
-        play(p1, p2)
+        play(p1, p2, order)
         # print(p1.score, p2.score)
     print(f"final score: {p1.name}: {p1.score}, {p2.name}: {p2.score}")

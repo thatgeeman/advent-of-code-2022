@@ -1,9 +1,9 @@
 from solution_part1 import read_file, RPSGamer
 
 
-def find_choice(curr_choice, objective="w"):
+def make_move(curr_choice, objective="w"):
     assert objective in ["w", "l"]
-    ref = "RSPR" if objective == "l" else "RPSR"
+    ref = order if objective == "l" else order[::-1]
     idx = [i for i, alp in enumerate(ref) if alp == curr_choice][0]
     return ref[idx + 1]
 
@@ -16,13 +16,13 @@ def play_unfair(player1, player2):
     print(player1.choice, player2.choice, end=" ")
 
     if player2._item == "X":
-        player2.choice = find_choice(player1.choice, "l")
+        player2.choice = make_move(player1.choice, "l")
         player2.lose()
     elif player2._item == "Y":
         player2.choice = player1.choice
         player2.draw()
     elif player2._item == "Z":
-        player2.choice = find_choice(player1.choice, "w")
+        player2.choice = make_move(player1.choice, "w")
         player2.win()
     print(f"(change) {player2.choice}")
 
@@ -32,6 +32,7 @@ def play_unfair(player1, player2):
 
 if __name__ == "__main__":
     # R > S > P > R
+    order = "RSPR"
     strategy_sheet = read_file("dec2/input.txt")
     print(f"total rounds: {len(strategy_sheet)}")
     p1 = RPSGamer("Elf", "ABC")
