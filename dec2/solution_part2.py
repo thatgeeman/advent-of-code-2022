@@ -1,9 +1,9 @@
 from solution_part1 import read_file, RPSGamer
 
 
-def find_choice(curr_choice, obective="w"):
-    assert obective in ["w", "l"]
-    ref = "RSPR" if obective == "l" else "RPSR"
+def find_choice(curr_choice, objective="w"):
+    assert objective in ["w", "l"]
+    ref = "RSPR" if objective == "l" else "RPSR"
     idx = [i for i, alp in enumerate(ref) if alp == curr_choice][0]
     return ref[idx + 1]
 
