@@ -1,2 +1,2 @@
 # advent-of-code-2022
-Advent of Code 2022 using Python
+My solutions to Advent of Code 2022 using Python
