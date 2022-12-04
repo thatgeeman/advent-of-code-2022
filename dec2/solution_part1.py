@@ -32,18 +32,16 @@ class RPSGamer:
         # print(item, self.vocab[item])
         self._item = item
         self.choice = self._vocab[item]
-        # default points for choice
-        self.score += self._points_enc[item]
 
     def win(self):
         # print(self.points[self.choice])
-        self.score += 6
+        self.score += self._points[self.choice] + 6
 
     def lose(self):
-        self.score += 0
+        self.score += self._points[self.choice]
 
     def draw(self):
-        self.score += 3
+        self.score += self._points[self.choice] + 3
 
 
 def play(player1, player2):

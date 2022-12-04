@@ -1,47 +1,4 @@
-def read_file(filename):
-    round = []
-    with open(filename, "r") as f:
-        while True:
-            n = f.readline()
-            if len(n) == 0:
-                break
-            else:
-                n = n.strip()
-                m1, m2 = n.split(" ")
-                round.append([m1, m2])
-    return round
-
-
-class RPSGamer:
-    def __init__(self, name, encoding):
-        self.name: str = name
-        self.encoding: str = encoding  # ABC
-        self.choice = None
-        self.score = 0
-        self.rps = "RPS"
-        # {R: 1, P: 2, S: 3}
-        self._points = dict(zip(self.rps, [1, 2, 3]))
-        # {A: 1, B: 2, C: 3}
-        self._points_enc = dict(zip(self.encoding, [1, 2, 3]))
-        # {A: R, B: P, C: S}
-        self._vocab = dict(zip(self.encoding, self.rps))
-        # print(self.points, self.vocab)
-
-    def set_choice(self, item):
-        assert item in self.encoding
-        # print(item, self.vocab[item])
-        self._item = item
-        self.choice = self._vocab[item]
-
-    def win(self):
-        # print(self.points[self.choice])
-        self.score += self._points[self.choice] + 6
-
-    def lose(self):
-        self.score += self._points[self.choice]
-
-    def draw(self):
-        self.score += self._points[self.choice] + 3
+from solution_part1 import read_file, RPSGamer
 
 
 def find_choice(curr_choice, obective="w"):
@@ -56,22 +13,18 @@ def find_choice(curr_choice, obective="w"):
 def play_unfair(player1, player2):
     assert isinstance(player1, RPSGamer)
     assert isinstance(player2, RPSGamer)
-    print(
-        player1.choice,
-        player2.choice,
-    )
+    print(player1.choice, player2.choice, end=" ")
 
     if player2._item == "X":
         player2.choice = find_choice(player1.choice, "l")
-        print(f"*{player2.choice}")
         player2.lose()
     elif player2._item == "Y":
         player2.choice = player1.choice
         player2.draw()
     elif player2._item == "Z":
         player2.choice = find_choice(player1.choice, "w")
-        print(f"*{player2.choice}")
         player2.win()
+    print(f"(change) {player2.choice}")
 
 
 # Rock defeats Scissors, Scissors defeats Paper, and Paper defeats Rock
