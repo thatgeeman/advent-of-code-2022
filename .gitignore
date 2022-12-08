@@ -1,6 +1,8 @@
 # User added
 .vscode
 */input.txt
+*/*.joblib
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

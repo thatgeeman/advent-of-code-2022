@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 flake8 = "*"
 black = "*"
+ipykernel = "*"
+joblib = "*"
 
 [dev-packages]
 
