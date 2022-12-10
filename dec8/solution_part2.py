@@ -9,7 +9,7 @@ def view_blockers(item, others):
             if x > item:
                 break
             if x == item:
-                return idx
+                break
         return idx
 
 
