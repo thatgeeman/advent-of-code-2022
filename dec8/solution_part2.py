@@ -2,6 +2,11 @@ from solution_part1 import read_file, get_bottom, get_left, get_right, get_top
 
 
 def view_blockers(item, others):
+    """
+    Check if an item in `others` is blocking item.
+
+    A tree is blocking if the other item is of same height or larger.
+    """
     if len(others) == 0:
         return 0
     else:

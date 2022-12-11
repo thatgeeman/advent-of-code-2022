@@ -1,6 +1,3 @@
-import sys
-
-
 def read_file(filename):
     """Read the input file, nothing fancy."""
     with open(filename, "r", encoding="utf-8") as f:
@@ -18,6 +15,10 @@ def read_file(filename):
 
 
 def get_top(i, j, grid):
+    """
+    Select the items from the same column on top of the item at position
+    (i,j) of grid.
+    """
     item = grid[i][j]
     top = [grid[p][j] for p in range(0, i)]
     print(f"items to top of {item}: {top}")
@@ -25,6 +26,10 @@ def get_top(i, j, grid):
 
 
 def get_bottom(i, j, grid):
+    """
+    Select the items from the same column below the item at position
+    (i,j) of grid.
+    """
     item = grid[i][j]
     bottom = [grid[p][j] for p in range(i + 1, len(grid))]
     print(f"items to bottom of {item}: {bottom}")
@@ -32,6 +37,10 @@ def get_bottom(i, j, grid):
 
 
 def get_left(i, j, grid):
+    """
+    Select the items from the same row to the left of the item at position
+    (i,j) of grid.
+    """
     item = grid[i][j]
     left = [grid[i][p] for p in range(0, j)]
     print(f"items to left of {item}: {left}")
@@ -39,6 +48,10 @@ def get_left(i, j, grid):
 
 
 def get_right(i, j, grid):
+    """
+    Select the items from the same row to the right of the item at position
+    (i,j) of grid.
+    """
     item = grid[i][j]
     right = [grid[i][p] for p in range(j + 1, len(grid[0]))]
     print(f"items to right of {item}: {right}")
@@ -46,6 +59,9 @@ def get_right(i, j, grid):
 
 
 def item_is_taller(item, others):
+    """
+    Check if item is taller (larger) than each item in `others`.
+    """
     if len(others) == 0:
         return True
     else:
