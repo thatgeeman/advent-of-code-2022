@@ -1,6 +1,6 @@
 # User added
 .vscode
-*/input.txt
+*/*.txt
 */*.joblib
 
 # Byte-compiled / optimized / DLL files
